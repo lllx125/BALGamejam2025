@@ -35,7 +35,7 @@ public class GenerateGamePlay : MonoBehaviour
                 GameObject crystalClone = Instantiate(crystal, new Vector3(spawnPosition, direction * 2.86f, 0), Quaternion.identity);
                 crystalClone.transform.localScale = new Vector3(0.2f, -1 * direction * 0.2f, 1f);
             }
-            else if (generateType < 18)
+            else if (generateType < 13)
             {
                 GameObject goblinClone = Instantiate(goblin, new Vector3(spawnPosition, direction * 3.13f, 0), Quaternion.identity);
                 goblinClone.transform.localScale = new Vector3(0.2f, -1 * direction * 0.2f, 1f);

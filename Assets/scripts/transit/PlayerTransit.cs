@@ -35,6 +35,7 @@ public class PlayerTransit : MonoBehaviour
     {
         Land();
         DashRange();
+        transform.position += velocity * Time.deltaTime;
     }
 
     void Dash()
@@ -54,34 +55,11 @@ public class PlayerTransit : MonoBehaviour
 
     void DashRange()
     {
-        if (transform.position.x > 9)
-        {
-            BackDash();
-        }
-        else if (transform.position.x < xPosition - 0.01)
+        if (transform.position.x < xPosition - 0.01)
         {
             velocity = new Vector3(0, velocity.y, 0);
             transform.position = new Vector3(xPosition, transform.position.y, 0);
-
-
         }
-    }
-
-    void Jump()
-    {
-
-        if (position)
-        {
-            velocity = new Vector3(velocity.x, jumpSpeed, 0);
-            transform.localScale = new Vector3(0.2f, -0.2f, 1f);
-        }
-        else
-        {
-            velocity = new Vector3(velocity.x, -jumpSpeed, 0);
-            transform.localScale = new Vector3(0.2f, 0.2f, 1f);
-
-        }
-        position = !position;
     }
 
     void Land()
@@ -100,7 +78,7 @@ public class PlayerTransit : MonoBehaviour
     }
     void Fall()
     {
-        position = transform.position.y > 0;
-        Jump();
+        velocity = new Vector3(velocity.x, -jumpSpeed, 0);
+        transform.localScale = new Vector3(0.2f, 0.2f, 1f);
     }
 }

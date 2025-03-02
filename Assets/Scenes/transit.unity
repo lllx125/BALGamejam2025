@@ -119,6 +119,46 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &297671490 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3844354869914959834, guid: 90fd0ca13b4dbcb43a04a2340699fd92, type: 3}
+  m_PrefabInstance: {fileID: 1305707471}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &297671491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297671490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebed05eb499233e4f962800c83963932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpSpeed: 20
+  dashSpeed: 25
+  runSpeed: 5
+  lowerL: -3.25
+  upperL: 0
+  dashSound: {fileID: 297671495}
+  jumpSound: {fileID: 297671494}
+  runSound: {fileID: 297671493}
+--- !u!82 &297671493 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8466108115719343544, guid: 90fd0ca13b4dbcb43a04a2340699fd92, type: 3}
+  m_PrefabInstance: {fileID: 1305707471}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &297671494 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6362827785413667688, guid: 90fd0ca13b4dbcb43a04a2340699fd92, type: 3}
+  m_PrefabInstance: {fileID: 1305707471}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &297671495 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 9097738173263256337, guid: 90fd0ca13b4dbcb43a04a2340699fd92, type: 3}
+  m_PrefabInstance: {fileID: 1305707471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1003728335
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6362827785413667688, guid: 90fd0ca13b4dbcb43a04a2340699fd92, type: 3}
       propertyPath: m_PlayOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8258707335900160192, guid: 90fd0ca13b4dbcb43a04a2340699fd92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -350,13 +390,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8466108115719343544, guid: 90fd0ca13b4dbcb43a04a2340699fd92, type: 3}
       propertyPath: m_PlayOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 621372525259832975, guid: 90fd0ca13b4dbcb43a04a2340699fd92, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3844354869914959834, guid: 90fd0ca13b4dbcb43a04a2340699fd92, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 297671491}
   m_SourcePrefab: {fileID: 100100000, guid: 90fd0ca13b4dbcb43a04a2340699fd92, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
