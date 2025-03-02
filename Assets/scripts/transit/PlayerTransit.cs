@@ -2,15 +2,12 @@ using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour
+public class PlayerTransit : MonoBehaviour
 
 {
-    private int jumpCount = 0;
     public float jumpSpeed;
     public float dashSpeed;
     public float runSpeed;
-
-    private bool isDash = false;
 
 
     public float lowerL; // y coordinate of lower edge of upper level
@@ -24,48 +21,26 @@ public class Player : MonoBehaviour
     public AudioSource jumpSound;
     public AudioSource runSound;
 
-    private GenerateGamePlay generateGamePlay;
 
     void Start()
     {
         upperL = -lowerL;
-        transform.position = new Vector3(xPosition, lowerL, 0);
-        generateGamePlay = GameObject.Find("GenerateGamePlay").GetComponent<GenerateGamePlay>();
-        SetSpeed(runSpeed);
+        transform.position = new Vector3(GameManager.Instance.playX, GameManager.Instance.playY, 0);
+        BackDash();
         runSound.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            jumpCount = (jumpCount + 1) % 3;
-            if (jumpCount == 0)
-            {
-                Dash();
-            }
-            else
-            {
-                jumpSound.Play();
-                Jump();
-            }
-        }
-        transform.position += velocity * Time.deltaTime;
         Land();
         DashRange();
+    }
 
-    }
-    void SetSpeed(float speed)
-    {
-        generateGamePlay.speed = speed;
-    }
     void Dash()
     {
-        isDash = true;
         runSound.Stop();
         dashSound.Play();
-        SetSpeed(dashSpeed * 0.3f);
         velocity = new Vector3(dashSpeed * 0.7f, 0, 0);
         Invoke("BackDash", 0.5f);
     }
@@ -73,9 +48,7 @@ public class Player : MonoBehaviour
     void BackDash()
     {
         velocity = new Vector3(-0.8f * runSpeed, 0, 0);
-        SetSpeed(0.8f * runSpeed + runSpeed);
         Fall();
-        isDash = false;
         runSound.Play();
     }
 
@@ -89,14 +62,14 @@ public class Player : MonoBehaviour
         {
             velocity = new Vector3(0, velocity.y, 0);
             transform.position = new Vector3(xPosition, transform.position.y, 0);
-            SetSpeed(runSpeed);
+
 
         }
     }
 
     void Jump()
     {
-        SetSpeed(runSpeed);
+
         if (position)
         {
             velocity = new Vector3(velocity.x, jumpSpeed, 0);
@@ -129,33 +102,5 @@ public class Player : MonoBehaviour
     {
         position = transform.position.y > 0;
         Jump();
-    }
-
-    public void Die()
-    {
-        SceneManager.LoadScene("die");
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        switch (other.tag)
-        {
-            case "obstacle":
-                Die();
-                break;
-            case "crystal":
-                GameManager.Instance.AddScore(2);
-                break;
-            case "goblin":
-                if (isDash)
-                {
-                    GameManager.Instance.AddScore(3);
-                }
-                else
-                {
-                    Die();
-                }
-                break;
-        }
     }
 }

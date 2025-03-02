@@ -12,8 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/game.unity
     guid: 745d89288e62c924daf3fb0edc0eb9b4
   - enabled: 1
+    path: Assets/Scenes/transit.unity
+    guid: a9e3d430a59d99642bdc270e09f53a31
+  - enabled: 1
     path: Assets/Scenes/boss.unity
     guid: e0e0e561f1ae66b429e24857cee61f87
+  - enabled: 1
+    path: Assets/Scenes/die.unity
+    guid: b56300e9b8e8fa84bb2d85b9bd7ee16b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

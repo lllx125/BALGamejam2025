@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.SceneManagement;
 
 public class GenerateGamePlay : MonoBehaviour
 {
@@ -19,21 +21,21 @@ public class GenerateGamePlay : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= genInterval)
         {
-            int generateType = Random.Range(0, 12);
+            int generateType = Random.Range(0, 19);
             int direction = Random.Range(0, 2) * 2 - 1;
             timer = 0;
-            genInterval = Random.Range(1f, 2);
-            if (generateType < 3)
+            genInterval = Random.Range(1, 3);
+            if (generateType < 6)
             {
                 GameObject obstacleClone = Instantiate(obstacle, new Vector3(spawnPosition, direction * 2.93f, 0), Quaternion.identity);
                 obstacleClone.transform.localScale = new Vector3(0.25f, -1 * direction * 0.25f, 1f);
             }
-            else if (generateType < 6)
+            else if (generateType < 12)
             {
                 GameObject crystalClone = Instantiate(crystal, new Vector3(spawnPosition, direction * 2.86f, 0), Quaternion.identity);
                 crystalClone.transform.localScale = new Vector3(0.2f, -1 * direction * 0.2f, 1f);
             }
-            else if (generateType < 9)
+            else if (generateType < 18)
             {
                 GameObject goblinClone = Instantiate(goblin, new Vector3(spawnPosition, direction * 3.13f, 0), Quaternion.identity);
                 goblinClone.transform.localScale = new Vector3(0.2f, -1 * direction * 0.2f, 1f);
@@ -47,6 +49,9 @@ public class GenerateGamePlay : MonoBehaviour
     }
     void Boss()
     {
-
+        GameManager.Instance.setPosition(transform.Find("Background").transform.position.x);
+        GameManager.Instance.setPlayX(GameObject.Find("Player").transform.position.x);
+        GameManager.Instance.setPlayY(GameObject.Find("Player").transform.position.y);
+        SceneManager.LoadScene("transit");
     }
 }
