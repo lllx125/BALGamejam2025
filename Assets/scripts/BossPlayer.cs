@@ -17,6 +17,8 @@ public class BossPlayer : MonoBehaviour
 
     private float attackXPosition = 3f;
 
+    private bool isWin = false;
+
     private Vector3 velocity = new Vector3(0, 0, 0);
 
     public GameObject boss;
@@ -33,7 +35,7 @@ public class BossPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !isWin)
         {
             jumpCount = (jumpCount + 1) % 3;
             if (jumpCount == 0)
@@ -87,6 +89,10 @@ public class BossPlayer : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, lowerL, 0);
             velocity = new Vector3(velocity.x, 0, 0);
+            if (isWin)
+            {
+                SceneManager.LoadScene("game");
+            }
         }
         else if (transform.position.y > upperL)
         {
@@ -116,6 +122,13 @@ public class BossPlayer : MonoBehaviour
     }
     void Fall()
     {
+        if (isWin)
+        {
+            velocity = new Vector3(velocity.x, -jumpSpeed, 0);
+            transform.localScale = new Vector3(0.2f, 0.2f, 1f);
+            return;
+        }
+
         position = transform.position.y > 0;
         Jump();
     }
@@ -123,6 +136,11 @@ public class BossPlayer : MonoBehaviour
     public void Die()
     {
         SceneManager.LoadScene("die");
+    }
+
+    public void Win()
+    {
+        isWin = true;
     }
 
 }

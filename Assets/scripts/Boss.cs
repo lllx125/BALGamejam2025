@@ -56,5 +56,6 @@ public class Boss : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        GameObject.Find("Player").GetComponent<BossPlayer>().Win();
     }
 }
