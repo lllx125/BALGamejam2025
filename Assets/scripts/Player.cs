@@ -2,12 +2,14 @@ using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
 
-public class BossPlayer : MonoBehaviour
+public class Player : MonoBehaviour
 
 {
     private int jumpCount = 0;
     public float jumpSpeed;
     public float dashSpeed;
+    public float runSpeed;
+
 
     public float lowerL; // y coordinate of lower edge of upper level
     public float upperL; // y coordinate of upper edge of lower level
@@ -15,19 +17,20 @@ public class BossPlayer : MonoBehaviour
     private bool position = true;
     private float xPosition = -7f;
 
-    private float attackXPosition = 3f;
-
     private Vector3 velocity = new Vector3(0, 0, 0);
-
-    public GameObject boss;
-
     public AudioSource dashSound;
     public AudioSource jumpSound;
+    public AudioSource runSound;
+
+    private GenerateGamePlay generateGamePlay;
 
     void Start()
     {
         upperL = -lowerL;
         transform.position = new Vector3(xPosition, lowerL, 0);
+        generateGamePlay = GameObject.Find("GenerateGamePlay").GetComponent<GenerateGamePlay>();
+        SetSpeed(runSpeed);
+        runSound.Play();
     }
 
     // Update is called once per frame
@@ -51,22 +54,45 @@ public class BossPlayer : MonoBehaviour
         DashRange();
 
     }
-
+    void SetSpeed(float speed)
+    {
+        generateGamePlay.speed = speed;
+    }
     void Dash()
     {
+        runSound.Stop();
         dashSound.Play();
-        velocity = new Vector3(dashSpeed, 0, 0);
+        SetSpeed(dashSpeed * 0.3f);
+        velocity = new Vector3(dashSpeed * 0.7f, 0, 0);
+        Invoke("BackDash", 0.5f);
     }
 
     void BackDash()
     {
+        velocity = new Vector3(-0.8f * runSpeed, 0, 0);
+        SetSpeed(0.8f * runSpeed + runSpeed);
+        Fall();
+        runSound.Play();
+    }
 
-        velocity = new Vector3(-0.5f * dashSpeed, 0, 0);
+    void DashRange()
+    {
+        if (transform.position.x > 9)
+        {
+            BackDash();
+        }
+        else if (transform.position.x < xPosition - 0.01)
+        {
+            velocity = new Vector3(0, velocity.y, 0);
+            transform.position = new Vector3(xPosition, transform.position.y, 0);
+            SetSpeed(runSpeed);
+
+        }
     }
 
     void Jump()
     {
-
+        SetSpeed(runSpeed);
         if (position)
         {
             velocity = new Vector3(velocity.x, jumpSpeed, 0);
@@ -95,25 +121,6 @@ public class BossPlayer : MonoBehaviour
         }
 
     }
-
-    void DashRange()
-    {
-        if (transform.position.x > attackXPosition)
-        {
-            transform.position = new Vector3(attackXPosition, transform.position.y, 0);
-            if (boss != null)
-            {
-                boss.GetComponent<Boss>().Hurt();
-            }
-            BackDash();
-        }
-        else if (transform.position.x < xPosition - 0.5)
-        {
-            velocity = new Vector3(0, velocity.y, 0);
-            transform.position = new Vector3(xPosition, transform.position.y, 0);
-            Fall();
-        }
-    }
     void Fall()
     {
         position = transform.position.y > 0;
@@ -125,4 +132,19 @@ public class BossPlayer : MonoBehaviour
         SceneManager.LoadScene("die");
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        switch (other.tag)
+        {
+            case "obstacle":
+                Die();
+                break;
+            case "crystal":
+                GameManager.Instance.AddScore(2);
+                break;
+            case "goblin":
+                GameManager.Instance.AddScore(3);
+                break;
+        }
+    }
 }

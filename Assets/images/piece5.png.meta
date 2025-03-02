@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c14f7589d3119b445a47486e685d9359
+guid: 2f64b60347305274399b8463c9f3cbaa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4480434827562053419
-    second: bandage_0
+      213: -9042665929805873571
+    second: piece5_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bandage_0
+      name: piece5_0
       rect:
         serializedVersion: 2
-        x: 1828
-        y: 1852
-        width: 347
-        height: 342
+        x: 966
+        y: 1014
+        width: 116
+        height: 133
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b2fef10ccb3bd2e30800000000000000
-      internalID: 4480434827562053419
+      spriteID: d5eb4673f3ff18280800000000000000
+      internalID: -9042665929805873571
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      bandage_0: 4480434827562053419
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
