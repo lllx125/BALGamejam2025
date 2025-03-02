@@ -9,9 +9,13 @@ public class Goblin : MonoBehaviour
     public float lowerL; // y coordinate of lower edge of upper level
     public float upperL; // y coordinate of upper edge of lower level
     private Vector3 velocity = new Vector3(0, 0, 0);
+
+    public AudioSource goblinSound;
+    public AudioSource deathSound;
     void Start()
     {
         upperL = -lowerL;
+        goblinSound.Play();
 
     }
 
@@ -61,7 +65,7 @@ public class Goblin : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            gameObject.tag = "untouchable";
+            deathSound.Play();
             Destroy(gameObject);
         }
     }
