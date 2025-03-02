@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.SceneManagement;
 public class Redding : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
@@ -25,6 +26,11 @@ public class Redding : MonoBehaviour
         {
             t += Time.deltaTime / duration;  // Increment t based on duration
             spriteRenderer.color = Color.Lerp(startColor, targetColor, t);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.Instance.score = 0;
+            SceneManager.LoadScene("game");
         }
     }
 }

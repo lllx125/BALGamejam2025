@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
             case "goblin":
                 if (isDash)
                 {
-                    GameManager.Instance.AddScore(1);
+                    GameManager.Instance.AddScore(3);
                 }
                 else
                 {

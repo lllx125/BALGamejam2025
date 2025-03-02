@@ -30,7 +30,7 @@ public class GenerateGamePlay : MonoBehaviour
                 GameObject obstacleClone = Instantiate(obstacle, new Vector3(spawnPosition, direction * 2.93f, 0), Quaternion.identity);
                 obstacleClone.transform.localScale = new Vector3(0.25f, -1 * direction * 0.25f, 1f);
             }
-            else if (generateType < 12)
+            else if (generateType < 10)
             {
                 GameObject crystalClone = Instantiate(crystal, new Vector3(spawnPosition, direction * 2.86f, 0), Quaternion.identity);
                 crystalClone.transform.localScale = new Vector3(0.2f, -1 * direction * 0.2f, 1f);
