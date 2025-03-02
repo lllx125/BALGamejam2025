@@ -642,7 +642,13 @@ PrefabInstance:
       value: GenerateGamePlay
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6119501387120204494, guid: 39c8fea40c8a8764ca9b6805c9d205d7, type: 3}
+    - {fileID: 4677687616621794932, guid: 39c8fea40c8a8764ca9b6805c9d205d7, type: 3}
+    - {fileID: 7459258191290477137, guid: 39c8fea40c8a8764ca9b6805c9d205d7, type: 3}
+    - {fileID: 2838419959435942689, guid: 39c8fea40c8a8764ca9b6805c9d205d7, type: 3}
+    - {fileID: 2752991267357679557, guid: 39c8fea40c8a8764ca9b6805c9d205d7, type: 3}
+    - {fileID: 8699899283810309259, guid: 39c8fea40c8a8764ca9b6805c9d205d7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7914979672310190979, guid: 39c8fea40c8a8764ca9b6805c9d205d7, type: 3}
