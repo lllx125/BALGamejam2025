@@ -8,10 +8,15 @@ public class Redding : MonoBehaviour
     private float duration = 3f;   // Transition duration in seconds
     private float t = 0f;
 
+    public AudioSource failSound;
+    public AudioSource ahhSound;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = startColor;  // Start with white
+        ahhSound.Play();
+        failSound.Play();
     }
 
     void Update()

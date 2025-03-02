@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jumpCount = (jumpCount + 1) % 3;
@@ -138,6 +139,8 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(isDash);
+        Debug.Log(other.tag);
         switch (other.tag)
         {
             case "obstacle":
@@ -149,7 +152,7 @@ public class Player : MonoBehaviour
             case "goblin":
                 if (isDash)
                 {
-                    GameManager.Instance.AddScore(3);
+                    GameManager.Instance.AddScore(1);
                 }
                 else
                 {

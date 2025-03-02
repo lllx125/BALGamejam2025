@@ -140,6 +140,7 @@ public class BossPlayer : MonoBehaviour
 
     public void Win()
     {
+        GameManager.Instance.AddScore(10);
         isWin = true;
     }
 
