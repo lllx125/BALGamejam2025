@@ -4,14 +4,12 @@ using UnityEngine.Experimental.GlobalIllumination;
 public class BossPlayer : MonoBehaviour
 
 {
-
-    private float timer = 0f;
     private int jumpCount = 0;
     public float jumpSpeed;
     public float dashSpeed;
 
     public float lowerL; // y coordinate of lower edge of upper level
-    private float upperL; // y coordinate of upper edge of lower level
+    public float upperL; // y coordinate of upper edge of lower level
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private bool position = true;
     private float xPosition = -7f;
@@ -19,6 +17,9 @@ public class BossPlayer : MonoBehaviour
     private float attackXPosition = 3f;
 
     private Vector3 velocity = new Vector3(0, 0, 0);
+
+    public GameObject boss;
+
     void Start()
     {
         upperL = -lowerL;
@@ -91,6 +92,11 @@ public class BossPlayer : MonoBehaviour
     {
         if (transform.position.x > attackXPosition)
         {
+            transform.position = new Vector3(attackXPosition, transform.position.y, 0);
+            if (boss != null)
+            {
+                boss.GetComponent<Boss>().Hurt();
+            }
             BackDash();
         }
         else if (transform.position.x < xPosition - 0.5)
@@ -104,6 +110,11 @@ public class BossPlayer : MonoBehaviour
     {
         position = transform.position.y > 0;
         Jump();
+    }
+
+    public void Die()
+    {
+        Debug.Log("die");
     }
 
 }

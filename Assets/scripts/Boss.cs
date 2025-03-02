@@ -1,11 +1,14 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class Boss : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private float timer = 0f;
-    public float interval = 3f;
+    public float attackiInterval;
+
+    public int health = 10;
 
     private Head head;
     void Start()
@@ -18,23 +21,40 @@ public class Boss : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= interval)
+        if (timer >= attackiInterval)
         {
-            Attack();
+
+            if (Random.Range(1, 3) == 1)
+            {
+                head.AttackUp();
+            }
+            else
+            {
+                head.AttackDown();
+            }
+            timer = 0;
 
         }
     }
-
-    void Attack()
+    public void Hurt()
     {
-        head.Open();
-        Invoke("EndAttack", 1f);
+        health--;
+        if (health == 5)
+        {
+            transform.Find("bandage_1").GameObject().SetActive(true); // Show bandage 1
+        }
+        else if (health == 3)
+        {
+            transform.Find("bandage_2").GameObject().SetActive(true); // Show bandage 2
+        }
+        else if (health <= 0)
+        {
+            Die();
+        }
     }
 
-    void EndAttack()
+    void Die()
     {
-
-        head.Close();
-        timer = 0f; // Reset timer
+        Destroy(gameObject);
     }
 }
