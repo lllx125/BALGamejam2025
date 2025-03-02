@@ -19,17 +19,26 @@ public class Head : MonoBehaviour
     public float attackTime = 1f;
     public float warnTime = 1f;
 
+    public AudioSource fireSound;
+    public AudioSource breathSound;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         fireup.SetActive(false);
         firedown.SetActive(false);
+
+        breathSound.Play();
     }
     void Update()
     {
         if (isAttacking == 0)
         {
             LookAtPlayer();
+        }
+        else
+        {
+            breathSound.Stop();
         }
         IsHit();
     }
@@ -76,6 +85,7 @@ public class Head : MonoBehaviour
     }
     void Fire()
     {
+        fireSound.Play();
         isAttacking *= 2;
         if (isAttacking == 2)
         {
@@ -93,6 +103,7 @@ public class Head : MonoBehaviour
         Close();
         fireup.SetActive(false);
         firedown.SetActive(false);
+        breathSound.Play();
     }
 
     public void IsHit()

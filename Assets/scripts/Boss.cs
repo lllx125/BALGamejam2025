@@ -6,7 +6,7 @@ public class Boss : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private float timer = 0f;
-    public float attackiInterval;
+    private float attackiInterval = 5f;
 
     public int health = 10;
 
@@ -33,7 +33,7 @@ public class Boss : MonoBehaviour
                 head.AttackDown();
             }
             timer = 0;
-
+            attackiInterval = Random.Range(4, 7);
         }
     }
     public void Hurt()

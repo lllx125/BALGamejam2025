@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.SceneManagement;
 
 public class BossPlayer : MonoBehaviour
 
@@ -20,6 +21,9 @@ public class BossPlayer : MonoBehaviour
 
     public GameObject boss;
 
+    public AudioSource dashSound;
+    public AudioSource jumpSound;
+
     void Start()
     {
         upperL = -lowerL;
@@ -38,6 +42,7 @@ public class BossPlayer : MonoBehaviour
             }
             else
             {
+                jumpSound.Play();
                 Jump();
             }
         }
@@ -49,16 +54,19 @@ public class BossPlayer : MonoBehaviour
 
     void Dash()
     {
+        dashSound.Play();
         velocity = new Vector3(dashSpeed, 0, 0);
     }
 
     void BackDash()
     {
+
         velocity = new Vector3(-0.5f * dashSpeed, 0, 0);
     }
 
     void Jump()
     {
+
         if (position)
         {
             velocity = new Vector3(velocity.x, jumpSpeed, 0);
@@ -114,7 +122,7 @@ public class BossPlayer : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("die");
+        SceneManager.LoadScene(1);
     }
 
 }
