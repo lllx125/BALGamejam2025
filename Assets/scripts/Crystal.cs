@@ -11,6 +11,7 @@ public class Crystal : MonoBehaviour
   private Vector3 velocity = new Vector3(0, 0, 0);
   private float lifeTime = 1f;
   public float speed = 3f;
+  public AudioSource breakSound;
   void Start()
   {
     upperL = -lowerL;
@@ -30,6 +31,7 @@ public class Crystal : MonoBehaviour
   // function where make the crystal breaks when the player touches it, the orignal Crystone will be dispeared and a new one will be generated. The new one is CrystalBreak, noting it is another prefab.
   void breaks()
   {
+    breakSound.Play();
     for (int i = 0; i < 10; i++)
     {
       int index = Random.Range(0, 5);
@@ -57,7 +59,7 @@ public class Crystal : MonoBehaviour
 
 
       CrystalPiece pieceScript = crystalPiece.AddComponent<CrystalPiece>();
-      pieceScript.lifeTime = lifeTime;
+      pieceScript.lifeTime = 10;
     }
   }
 

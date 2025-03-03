@@ -58,12 +58,21 @@ public class BossPlayer : MonoBehaviour
     {
         dashSound.Play();
         velocity = new Vector3(dashSpeed, 0, 0);
+        if (position)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+        }
     }
 
     void BackDash()
     {
 
         velocity = new Vector3(-0.5f * dashSpeed, 0, 0);
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
     void Jump()

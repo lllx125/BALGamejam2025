@@ -66,6 +66,14 @@ public class Player : MonoBehaviour
         isDash = true;
         runSound.Stop();
         dashSound.Play();
+        if (position)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+        }
         SetSpeed(dashSpeed * 0.3f);
         velocity = new Vector3(dashSpeed * 0.7f, 0, 0);
         Invoke("BackDash", 0.5f);
@@ -73,6 +81,7 @@ public class Player : MonoBehaviour
 
     void BackDash()
     {
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         velocity = new Vector3(-0.8f * runSpeed, 0, 0);
         SetSpeed(0.8f * runSpeed + runSpeed);
         Fall();
